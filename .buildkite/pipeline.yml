@@ -11,9 +11,9 @@ steps:
     plugins:
       - 'uber-workflow/run-without-clone':      
     timeout_in_minutes: 10
-  - label: ":male-scientist: Create service role and annotate service account.."
+  - label: ":male-scientist: Deploy external-dns to cluster using helm.."
     command:
-      - ".buildkite/scripts/deploy-service-account.sh"
+      - ".buildkite/scripts/deploy-externaldns.sh"
     plugins:
       - 'uber-workflow/run-without-clone':      
     timeout_in_minutes: 10
