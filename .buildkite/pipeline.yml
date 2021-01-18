@@ -1,0 +1,19 @@
+env:
+  K8S_NAMESPACE: "kube-system"
+  K8S_CLUSTER_NAME: "tf-sample-cluster"
+  SERVICE_ACCOUNT_NAME: "alb-ingress-controller"
+  POLICY_NAME: "AWSLoadBalancerControllerIAMPolicy"
+  
+steps:
+  - label: ":male-scientist: Create service account with policy.."
+    command:
+      - ".buildkite/scripts/deploy-service-account.sh"
+    plugins:
+      - 'uber-workflow/run-without-clone':      
+    timeout_in_minutes: 10
+  - label: ":male-scientist: Create service role and annotate service account.."
+    command:
+      - ".buildkite/scripts/deploy-service-account.sh"
+    plugins:
+      - 'uber-workflow/run-without-clone':      
+    timeout_in_minutes: 10

@@ -1,0 +1,10 @@
+# restrict to changes to these domains
+domainFilters:
+  - someshasridhara.com
+# descriptive text to show who created record
+txtOwnerId: "externaldns"
+aws:
+  zoneType: public
+namespace: kube-system
+serviceAccount:
+  name: external-dns

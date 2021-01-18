@@ -1,0 +1,17 @@
+{
+    "Version":"2012-10-17",
+    "Statement":[
+       {
+          "Effect":"Allow",
+          "Principal":{
+             "Federated":"arn:aws:iam::674605608543:oidc-provider/oidc.eks.ap-southeast-2.amazonaws.com/id/FC3189DA9EDEA1901F91E17E738B8C30"
+          },
+          "Action":"sts:AssumeRoleWithWebIdentity",
+          "Condition":{
+             "StringEquals":{
+                "oidc.eks.ap-southeast-2.amazonaws.com/id/FC3189DA9EDEA1901F91E17E738B8C30:sub":"system:serviceaccount:kube-system:external-dns"
+             }
+          }
+       }
+    ]
+ }
