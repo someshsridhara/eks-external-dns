@@ -1,8 +1,5 @@
 #!/bin/bash
 
-POLICY_NAME="ExternalDNSServiceAccountPolicy"
-CLUSTER_NAME="tf-worksample-cluster"
-
 echo "Getting policies available to check if the policy being created already exists.."
 
 POLICY_COUNT=`aws iam list-policies | grep $POLICY_NAME | wc -l`
@@ -28,11 +25,11 @@ echo "Creating and Annotating the ingress controller service account"
 
 kubectl apply -f ./manifests/service-account.yaml -n kube-system
 
-kubectl annotate serviceaccount -n kube-system external-dns \
+kubectl annotate --overwrite serviceaccount -n kube-system external-dns \
 eks.amazonaws.com/role-arn=$ROLE_ARN
 
 echo "Deploy External-DNS"
 kubectl apply -f ./manifests/deployment.yaml -n kube-system
 
-kubectl annotate deployment -n kube-system external-dns \
+kubectl annotate --overwrite deployment -n kube-system external-dns \
 iam.amazonaws.com/role=$ROLE_ARN

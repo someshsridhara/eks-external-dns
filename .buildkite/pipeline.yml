@@ -2,18 +2,11 @@ env:
   K8S_NAMESPACE: "kube-system"
   K8S_CLUSTER_NAME: "tf-sample-cluster"
   SERVICE_ACCOUNT_NAME: "alb-ingress-controller"
-  POLICY_NAME: "AWSLoadBalancerControllerIAMPolicy"
-  
+  POLICY_NAME: "ExternalDNSServiceAccountPolicy"
 steps:
-  - label: ":male-scientist: Create service account with policy.."
+  - label: ":male-scientist: Deploy external-dns."
     command:
-      - ".buildkite/scripts/deploy-service-account.sh"
-    plugins:
-      - 'uber-workflow/run-without-clone':      
-    timeout_in_minutes: 10
-  - label: ":male-scientist: Deploy external-dns to cluster using helm.."
-    command:
-      - ".buildkite/scripts/deploy-externaldns.sh"
+      - ".buildkite/scripts/deploy.sh"
     plugins:
       - 'uber-workflow/run-without-clone':      
     timeout_in_minutes: 10
