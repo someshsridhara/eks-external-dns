@@ -4,6 +4,8 @@ env:
   SERVICE_ACCOUNT_NAME: "alb-ingress-controller"
   POLICY_NAME: "ExternalDNSServiceAccountPolicy"
 steps:
+  - block: "Confirm Apply"
+    prompt: "Are you sure we can apply this?"
   - label: ":male-scientist: Deploy external-dns."
     command:
       - ".buildkite/scripts/deploy.sh"
